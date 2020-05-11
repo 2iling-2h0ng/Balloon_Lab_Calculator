@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Balloon Lab Calculator</title>	
+</head>
+<style>
+body{text-align: center; background: linear-gradient(#34cbeb, white) center fixed; background-size: cover;}
+h1{font-size: 50px;text-shadow: 5px 10px 2px #93968f, 
+      -3px 6px 5px #58d1e3;}
+h2{font-size:30px;}
+h3{font-size:20px;}
+select{padding:10px 30px;}
+table{width: 5px; table-layout: fixed;}
+@keyframes example{animation: float 6s ease-in-out;}
+div{border: 20px solid rgba(0, 0, 0, 0.3);background-clip: padding-box; box-shadow: 10px 10px 5px gray; animation-name: example; position: absolute; width: 1000px; height: 525px; left: 13.5%; top:10%; background: white; opacity: 0.97; border-radius: 45px 180px;}
+button{background-color: #34cbeb; border: none; color: black; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;
+  font-size: 16px; margin: 4px 2px; cursor: pointer;}
+
+
+</style>
+<body>
+<!--#34cbeb url("background_blue_pattern.jpg") no-repeat-->
+<div>
+	<h1>Balloon Lab Calculator</h1>	
+	<h3>Coulomb's Law</h3>
+	<h2>F<sub>e</sub> = C * q<sup>2</sup> / d<sup>2</sup> </h2>	
+	<form name="balloon">
+		<p>
+			<label>Angle(month): </lable>
+			<select name="angle_month">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>
+			<br>
+			<label>Length in cm(date): </lable>
+			<select name="length_day">				
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>			
+			</select></p>
+			<!--<br>
+			<label>Acceleration of Gravity(m/s<sup>2</sup>):  </lable>
+			<select name="g">	
+				<option value="9.8">9.80</option>
+				<option value="9.81">9.81</option>
+			</select>			
+		</p>			
+			<input type="text" name="angle_month">
+		<br>
+		Length(cm): <input type="text" name="length_day">-->	
+	</form>
+	<button onclick="calculate()" autocomplete="off"><strong>Answer</strong></button>
+	<table style="width:100%">
+		<tr>
+			<th>Fg(N)</th>
+			<th>Fe(N)</th>		
+			<th>x(m)</th>
+			<th>2x or d(m)</th>
+			<th>q(C)</th>
+			<th>Electrons</th>
+		</tr>
+		<tr>
+			<td id="gravity"></td>
+			<td id="e"></td>
+			<td id="D"></td>
+			<td id="2D"></td>
+			<td id="charge"></td>
+			<td id="number"></td>
+		</tr>
+	</table>
+	</div>
+	<script type="text/javascript">
+			function calculate()
+			{
+				var angle, length, rad, Fg, Fe, d, twoD, q, num, Cou;
+				angle=Number(document.balloon.angle_month.value);
+				length=Number(document.balloon.length_day.value)/100;
+				
+				Cou=8.99e9;
+				rad=angle * ((Math.PI)/180);
+				
+				Fg=(9.80*.0035).toPrecision(3);
+				Fe=(Math.tan(rad) * Fg).toPrecision(3);				
+				d=(Math.sin(rad) * length).toPrecision(3);
+				twoD=(d*2).toPrecision(3);
+				var a=Fe*twoD*twoD;
+				var b=a/Cou;
+				q=(Math.sqrt(b)).toPrecision(3);
+				num=(q * 6.2e18).toPrecision(3);
+				
+				document.getElementById("gravity").innerHTML=Fg;
+				document.getElementById("e").innerHTML=Fe;
+				document.getElementById("D").innerHTML=d;
+				document.getElementById("2D").innerHTML=twoD;
+				document.getElementById("charge").innerHTML=q;
+				document.getElementById("number").innerHTML=num;		
+			}	
+	</script>			
+</body>	
+</html>	
